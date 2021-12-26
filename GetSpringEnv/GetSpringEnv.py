@@ -70,10 +70,10 @@ class Threads(threading.Thread):            #Custom thread class,Multi-threaded 
     def run(self):
         try:
             if self.Xproxy == None:
-                rep = requests.get(self.url,headers=self.headers,verify=False,timeout=3)
+                rep = requests.get(self.url,headers=self.headers,verify=False,timeout=3,allow_redirects=False)
             else:
                 proxies = {"https": self.Xproxy,"http":self.Xproxy}
-                rep = requests.get(self.url,headers=self.headers,verify=False,timeout=3,proxies=proxies)
+                rep = requests.get(self.url,headers=self.headers,verify=False,timeout=3,proxies=proxies,allow_redirects=False)
             UrlCode = rep.status_code
             if UrlCode == 200:
                 CanUseUrl.append(self.url)
