@@ -75,7 +75,7 @@ class Threads(threading.Thread):            #Custom thread class,Multi-threaded 
                 proxies = {"https": self.Xproxy,"http":self.Xproxy}
                 rep = requests.get(self.url,headers=self.headers,verify=False,timeout=3,proxies=proxies,allow_redirects=False)
             UrlCode = rep.status_code
-            if UrlCode == 200:
+            if UrlCode == 200 and 'server' in rep.text:
                 CanUseUrl.append(self.url)
                 print('[+]{} can be access'.format(self.url))
                 WriteFile(self.OutFilePath,self.url)
